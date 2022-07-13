@@ -1,0 +1,17 @@
+{{>partials/header}}
+
+<h1>aqui é o nome </h1>
+<h2> Qual seu nome? </h2>
+<form method = "POST">
+    
+    <input  type="text" name="idade" placeholder = "Digite sua idade"/>
+    <br>
+    <input  type="submit" value="Enviar"/>
+    
+</form>
+
+{{#anoNascimento}}
+     Voce nasceu em {{anoNascimento}}, certo?
+{{/anoNascimento}}
+
+{{>partials/footer}}

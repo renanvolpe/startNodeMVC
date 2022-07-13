@@ -1,0 +1,45 @@
+{{>partials/header}}
+
+    iniciando mustaches
+    <br>
+    variavel 1: {{user.name}}, variavel 2: {{lastName}}, variavel 3: {{user.idade}}
+    <br>
+    So enviando o objeto: {{user}}
+    <br>
+    Condicionamento: {{#showWelcome}}
+                        testando condição
+                     {{/showWelcome}}
+
+    <hr>
+    <h2> Testando lista </h2>
+     Usando partials, seria o mesmo de usar "widgets" no Flutter
+    <ul>
+    {{#products}}
+    {{>partials/productItem}}
+    {{/products}}
+    </ul>
+
+     <hr>
+    <h2> Testando lista 2</h2>
+    
+    <ul>
+    {{#productExpensive}}
+    {{>partials/productItem}}
+    {{/productExpensive}}
+    </ul>
+
+    <h2> Testando lista 3</h2>
+    Quando usa só o ".", inclui a variavel da condição 
+    <ul>
+    {{#fraseDoDia}}
+    <li> {{.}} </li>
+    {{/fraseDoDia}}
+    
+    {{^fraseDoDia}}
+    aqui ocorre se a lista forvazia, um else
+    <li> não há frase do dia </li>
+    {{/fraseDoDia}}
+    </ul>
+
+
+{{>partials/footer}}
