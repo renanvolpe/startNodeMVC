@@ -1,8 +1,17 @@
 import { Request, Response } from "express";
 
+import {sequelize} from '../instances/mysql'
+
 import {Product} from '../models/Product'
 
-export const paginaHome = (req: Request, res: Response) => {
+export const paginaHome = async (req: Request, res: Response) => {
+  try {
+    await sequelize.authenticate;
+    console.log("conectou no banco de dados")
+  } catch (error) {
+      console.log("deu erro na conexão", error)
+  }
+
     // res.send('Olá mundo');
 
     let showWelcome: boolean = false
