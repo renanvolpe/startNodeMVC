@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import {sequelize} from '../instances/mysql'
 
 import {Product} from '../models/Product'
+import {User} from '../models/User';
 
 export const paginaHome = async (req: Request, res: Response) => {
   try {
@@ -12,6 +13,9 @@ export const paginaHome = async (req: Request, res: Response) => {
       console.log("deu erro na conexão", error)
   }
 
+  let users = await User.findAll(); //users é um array de usuários
+  
+  console.log("USUARIOS: ", JSON.stringify(users));
     // res.send('Olá mundo');
 
     let showWelcome: boolean = false
@@ -40,6 +44,6 @@ export const paginaHome = async (req: Request, res: Response) => {
          'testando outra lista',
          'lista diferenciada'
      ],
-     
+     users: users
     });
 }
