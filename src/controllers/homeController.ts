@@ -64,6 +64,25 @@ export const paginaHome = async (req: Request, res: Response) => {
              //like -> "começam com" (usa-se o % para continuar, Ex: Re%, ou  %na%)
     
   });
+
+  let users5 = await User.findAll({
+    where:{
+      age: {
+            [Op.gte]: 18
+           } 
+    },
+    order: [['name', 'DESC']]  //DESC = =ordenar pelo nome   
+  });
+
+  let users6 = await User.findAll({
+    where:{
+      age: {
+            [Op.gte]: 18
+           } 
+    },
+    limit: 2, // limita exibição
+    offset: 2 //pula dois itens para começar a exibir
+  }); 
   
   
   //console.log("USUARIOS: ", JSON.stringify(users));
@@ -98,6 +117,8 @@ export const paginaHome = async (req: Request, res: Response) => {
      users1: users1,
      users2: users2,
      users3: users3,
-     users4: users4
+     users4: users4,
+     users5: users5,
+     users6: users6
     });
 }
