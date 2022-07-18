@@ -15,6 +15,52 @@ export const paginaHome = async (req: Request, res: Response) => {
       console.log("deu erro na conexão", error)
   }
 
+
+  //criar um usuário a partir do method Post da home.mu
+  let newUserName: string = req.body.name;
+  let newUserAge: string = req.body.age;
+
+  if(newUserName){
+    const newUser = User.build({
+      name: newUserName,
+      age: newUserAge
+    });
+    await newUser.save();
+  }
+
+
+  //criando um usuario no banco, duas maneiras:
+
+  //1 - build + save
+  const usuario1 = User.build({
+    name: "Pablo",
+    age: 28
+  });
+
+  //await usuario1.save();
+
+  
+  //2 - create
+  /*const usuario2 = await User.create({
+    name: "bonde",
+    age: 80
+  })*/
+
+  //atualizando dados do banco
+  /*await User.update(
+    {
+      age: 18
+    },
+    {
+      where: {
+        age: {
+          [Op.lt]: 18
+        }
+        
+      }
+    }
+  );*/
+
   let users1 = await User.findAll({
     attributes:{
      // ['name', 'age']//filtragem
@@ -83,6 +129,8 @@ export const paginaHome = async (req: Request, res: Response) => {
     limit: 2, // limita exibição
     offset: 2 //pula dois itens para começar a exibir
   }); 
+
+  
   
   
   //console.log("USUARIOS: ", JSON.stringify(users));
@@ -95,11 +143,16 @@ export const paginaHome = async (req: Request, res: Response) => {
      idade: 10
     }
 
+   
+
     if(user.idade < 15)
       showWelcome = true;
 
       let list = Product.getAll();
       let expensiveList = Product.getPrice(20);
+
+
+      
 
     
     //tratamento de variaveis é realizado anteriomente ao envio, só pode enviar o resultado

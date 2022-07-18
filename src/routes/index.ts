@@ -12,6 +12,8 @@ const router = Router();
 
 
 router.get('/', homeController.paginaHome);
+router.post('/', homeController.paginaHome);
+
 router.get('/contato', contatoController.contatoHome);
 router.get('/sobre', infoController.sobreHome);
 
